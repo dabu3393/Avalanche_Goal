@@ -76,7 +76,7 @@ while True:
         starting_score = away_team_score
 
 
-    time.sleep(3)
+    time.sleep(20)
 
 
 # Issues that need fixed
