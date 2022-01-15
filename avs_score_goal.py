@@ -16,8 +16,7 @@ while True:
     score = avs_score.json()
 
 
-    # DONT TOUCH, USING PAST GAME STATS TO FIND PATH FOR GOAL SCORER!!!
-    # This gets the player id's
+    # This gets the player id's and checks for goal scoring
     avs_players_info = requests.get("https://statsapi.web.nhl.com/api/v1/teams/21?expand=team.roster")
     player_info = avs_players_info.json()
     game_id = score['dates'][0]['games'][0]['gamePk']
