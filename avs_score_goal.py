@@ -2,10 +2,30 @@ import requests
 from datetime import datetime
 import time
 import os
+import cv2
 
 starting_score = 0
 
 while True:
+
+    def play_video():
+        cap = cv2.VideoCapture('avs_goal_video.mp4')
+
+        if cap.isOpened() == False:
+            print("Error File Not Found")
+
+        while cap.isOpened():
+            ret, frame = cap.read()
+            if ret == True:
+                cv2.imshow('frame', frame)
+                if cv2.waitKey(1) & 0xFF == ord('q'):
+                    break
+            else:
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
+        cv2.waitKey(3)
 
 
     # This gets the date and schedule for today
@@ -67,14 +87,18 @@ while True:
 
     if home_team_name == "Colorado Avalanche" and home_team_score != starting_score:
         os.system("afplay avs_goal_horn.wav&")
+        play_video()
+        os.system("killall afplay")
         print("AVS GOAL!!!")
         time.sleep(2)
         player_loop(id_list) # Should print who scored, but will also print past scoring so need to fix that
         time.sleep(2)
-        print("New Score!!\nColorado Avalanche: " + str(home_team_score) + "\n" + away_team_name + ": " + str(away_team_score))
+        print("Colorado Avalanche: " + str(home_team_score) + "\n" + away_team_name + ": " + str(away_team_score))
         starting_score = home_team_score
-    elif away_team_name == "Colorado Avalanche" and away_team_score != starting_score:
+    if away_team_name == "Colorado Avalanche" and away_team_score != starting_score:
         os.system("afplay avs_goal_horn.wav&")
+        play_video()
+        os.system("killall afplay")
         print("AVS GOAL!!!")
         time.sleep(2)
         player_loop(id_list)  # Should print who scored, but will also print past scoring so need to fix that
@@ -103,3 +127,6 @@ while True:
 #     Say who scored the goal --Need Help
 #     Play Music --done
 #     Show the new score --done
+
+
+
