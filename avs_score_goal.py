@@ -20,7 +20,7 @@ while True:
     avs_players_info = requests.get("https://statsapi.web.nhl.com/api/v1/teams/21?expand=team.roster")
     player_info = avs_players_info.json()
     game_id = score['dates'][0]['games'][0]['gamePk']
-    avs_stats = requests.get("https://statsapi.web.nhl.com/api/v1/game/2021020606/boxscore") # 2021020591 (<<<Blackhawks vs Avs Game ID, use to see stats from past game) 2021020606 (<<<Winnipeg Jets Game ID)
+    avs_stats = requests.get("https://statsapi.web.nhl.com/api/v1/game/" + str(game_id) + "/boxscore") # 2021020591 (<<<Blackhawks vs Avs Game ID, use to see stats from past game) 2021020606 (<<<Winnipeg Jets Game ID)
     stats = avs_stats.json()
 
     def home_away():
