@@ -14,6 +14,6 @@ The following is a list of the imports required to run it:
 - import os
 - import cv2
 
-This python program will run continuously until terminated by Ctrl-C or by other means
+This python program will run continuously until terminated by the user.
 
 
