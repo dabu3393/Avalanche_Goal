@@ -3,10 +3,15 @@ from datetime import datetime
 import time
 import os
 import cv2
+from tkinter import *
+import GUI_Avs
+
 
 starting_score = 0
 
 while True:
+
+    GUI_Avs.scoreboard()
 
     def play_video():
         cap = cv2.VideoCapture('avs_goal_video.mp4')
@@ -74,9 +79,6 @@ while True:
                         else:
                             pass
 
-    player_loop(id_list)
-
-
 
     # This determines when we score and runs a program
     home_team_name = score['dates'][0]['games'][0]['teams']['home']['team']['name']
@@ -89,23 +91,14 @@ while True:
         os.system("afplay avs_goal_horn.wav&")
         play_video()
         os.system("killall afplay")
-        print("AVS GOAL!!!")
-        time.sleep(2)
-        player_loop(id_list) # Should print who scored, but will also print past scoring so need to fix that
-        time.sleep(2)
-        print("Colorado Avalanche: " + str(home_team_score) + "\n" + away_team_name + ": " + str(away_team_score))
+        # player_loop(id_list) # Should print who scored, but will also print past scoring so need to fix that
         starting_score = home_team_score
-    if away_team_name == "Colorado Avalanche" and away_team_score != starting_score:
+    elif away_team_name == "Colorado Avalanche" and away_team_score != starting_score:
         os.system("afplay avs_goal_horn.wav&")
         play_video()
         os.system("killall afplay")
-        print("AVS GOAL!!!")
-        time.sleep(2)
-        player_loop(id_list)  # Should print who scored, but will also print past scoring so need to fix that
-        time.sleep(2)
-        print("New Score!!\nColorado Avalanche: " + str(away_team_score) + "\n" + home_team_name + ": " + str(home_team_score))
+        # player_loop(id_list)  # Should print who scored, but will also print past scoring so need to fix that
         starting_score = away_team_score
-
 
     time.sleep(20)
 
@@ -113,20 +106,7 @@ while True:
 # Issues that need fixed
 #     . (CONSULT) Figure out how to print the current goal scorer and not all the goal scorers since it'll run through the whole loop picking up each player that has already scored
 #     . Since using two different API's to see who scored and what the score of the game is, make sure that the API's update their stats similtaneously so the player_loop() has data to present when scored
-#     . Create a GUI
 
-
-
-
-
-
-
-
-# if the avs score changes
-#     Say "AVS GOAL" --done
-#     Say who scored the goal --Need Help
-#     Play Music --done
-#     Show the new score --done
 
 
 
