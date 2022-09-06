@@ -1,14 +1,16 @@
+from cv2 import resize
 import requests
 from tkinter import *
 from datetime import datetime
 import time
 
-def scoreboard():
+
+while True:
     start_date = datetime.now()
     today = start_date.strftime("%Y-%m-%d")
-    starting_score = str(0)
+    starting_score = str(2)
 
-    avs_score = requests.get("https://statsapi.web.nhl.com/api/v1/schedule?teamId=21&startDate=" + today + "&endDate=" + today)
+    avs_score = requests.get("https://statsapi.web.nhl.com/api/v1/schedule?teamId=21&startDate=2022-06-26&endDate=2022-06-26")
     score = avs_score.json()
 
     game_id = score['dates'][0]['games'][0]['gamePk']
@@ -66,7 +68,71 @@ def scoreboard():
     time_label = Label(time_frame, textvariable = period_time, font=("DIN Condensed", 30, "bold"), bg="#236192")
     time_label.grid(row=1,column=0)
 
-    home_image = PhotoImage(file="kings_logo.png")
+    if score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Colorado Avalanche":
+        home_image = PhotoImage(file="COL.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Carolina Hurricanes":
+        home_image = PhotoImage(file="CAR.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Columbus Blue Jackets":
+        home_image = PhotoImage(file="CBJ.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "New Jersey Devils":
+        home_image = PhotoImage(file="NJD.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "New York Islanders":
+        home_image = PhotoImage(file="NYI.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "New York Rangers":
+        home_image = PhotoImage(file="NYR.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Philadelphia Flyers":
+        home_image = PhotoImage(file="PHI.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Pittsburgh Penguins":
+        home_image = PhotoImage(file="PIT.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Washington Capitals":
+        home_image = PhotoImage(file="WAS.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Boston Bruins":
+        home_image = PhotoImage(file="BOS.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Buffalo Sabres":
+        home_image = PhotoImage(file="BUF.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Detroit Red Wings":
+        home_image = PhotoImage(file="DET.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Florida Panthers":
+        home_image = PhotoImage(file="FLR.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Montréal Canadiens":
+        home_image = PhotoImage(file="MTL.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Ottawa Senators":
+        home_image = PhotoImage(file="OTT.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Tampa Bay Lightning":
+        home_image = PhotoImage(file="TBL.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Toronto Maple Leafs":
+        home_image = PhotoImage(file="TOR.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Arizona Coyotes":
+        home_image = PhotoImage(file="ARI.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Chicago Blackhawks":
+        home_image = PhotoImage(file="CHI.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Dallas Stars":
+        home_image = PhotoImage(file="DAL.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Minnesota Wild":
+        home_image = PhotoImage(file="MIN.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Nashville Predators":
+        home_image = PhotoImage(file="NSH.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "St. Louis Blues":
+        home_image = PhotoImage(file="STL.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Winnipeg Jets":
+        home_image = PhotoImage(file="WIN.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Anaheim Ducks":
+        home_image = PhotoImage(file="ANH.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Calgary Flames":
+        home_image = PhotoImage(file="CAL.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Edmonton Oilers":
+        home_image = PhotoImage(file="EDM.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Los Angeles Kings":
+        home_image = PhotoImage(file="LAK.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "San Jose Sharks":
+        home_image = PhotoImage(file="SJS.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Seattle Kraken":
+        home_image = PhotoImage(file="SEA.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Vancouver Canucks":
+        home_image = PhotoImage(file="VAN.png")
+    elif score['dates'][0]['games'][0]['teams']['home']['team']['name'] == "Vegas Golden Knights":
+        home_image = PhotoImage(file="VEG.png")
+
     home_image_label = Label(image=home_image, bg="#236192")
     home_image_label.grid(row=1,column=0)
 
@@ -121,7 +187,71 @@ def scoreboard():
     away_hits_label = Label(middle_frame, textvariable = away_team_hits, font=("DIN Condensed", 30), fg="dark grey", bg="#236192")
     away_hits_label.grid(row=4,column=2, padx=10)
 
-    away_image = PhotoImage(file="avs_logo.png")
+    if score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Colorado Avalanche":
+        away_image = PhotoImage(file="COL.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Carolina Hurricanes":
+        away_image = PhotoImage(file="CAR.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Columbus Blue Jackets":
+        away_image = PhotoImage(file="CBJ.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "New Jersey Devils":
+        away_image = PhotoImage(file="NJD.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "New York Islanders":
+        away_image = PhotoImage(file="NYI.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "New York Rangers":
+        away_image = PhotoImage(file="NYR.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Philadelphia Flyers":
+        away_image = PhotoImage(file="PHI.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Pittsburgh Penguins":
+        away_image = PhotoImage(file="PIT.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Washington Capitals":
+        away_image = PhotoImage(file="WAS.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Boston Bruins":
+        away_image = PhotoImage(file="BOS.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Buffalo Sabres":
+        away_image = PhotoImage(file="BUF.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Detroit Red Wings":
+        away_image = PhotoImage(file="DET.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Florida Panthers":
+        away_image = PhotoImage(file="FLR.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Montréal Canadiens":
+        away_image = PhotoImage(file="MTL.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Ottawa Senators":
+        away_image = PhotoImage(file="OTT.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Tampa Bay Lightning":
+        away_image = PhotoImage(file="TBL.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Toronto Maple Leafs":
+        away_image = PhotoImage(file="TOR.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Arizona Coyotes":
+        away_image = PhotoImage(file="ARI.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Chicago Blackhawks":
+        away_image = PhotoImage(file="CHI.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Dallas Stars":
+        away_image = PhotoImage(file="DAL.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Minnesota Wild":
+        away_image = PhotoImage(file="MIN.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Nashville Predators":
+        away_image = PhotoImage(file="NSH.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "St. Louis Blues":
+        away_image = PhotoImage(file="STL.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Winnipeg Jets":
+        away_image = PhotoImage(file="WIN.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Anaheim Ducks":
+        away_image = PhotoImage(file="ANH.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Calgary Flames":
+        away_image = PhotoImage(file="CAL.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Edmonton Oilers":
+        away_image = PhotoImage(file="EDM.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Los Angeles Kings":
+        away_image = PhotoImage(file="LAK.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "San Jose Sharks":
+        away_image = PhotoImage(file="SJS.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Seattle Kraken":
+        away_image = PhotoImage(file="SEA.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Vancouver Canucks":
+        away_image = PhotoImage(file="VAN.png")
+    elif score['dates'][0]['games'][0]['teams']['away']['team']['name'] == "Vegas Golden Knights":
+        away_image = PhotoImage(file="VEG.png")
+
     away_image_label = Label(image=away_image, bg="#236192")
     away_image_label.grid(row=1,column=2)
 
@@ -135,18 +265,14 @@ def scoreboard():
     away_score_label = Label(textvariable = away_team_score, font=("DIN Condensed", 145, "bold"), bg="#236192")
     away_score_label.grid(row=3,column=2)
 
-    def quit():
-        window.destroy()
-
-
-
-    if home_team_name.get() == "Colorado Avalanche" and home_team_score.get() != starting_score:
-        quit()
-        starting_score = home_team_score.get()
-    elif away_team_name.get() == "Colorado Avalanche" and away_team_score.get() != starting_score:
-        quit()
-        starting_score = away_team_score.get()
+    # def quit():
+    #     window.destroy()
+    #
+    # if home_team_name.get() == "Colorado Avalanche" and home_team_score.get() != starting_score:
+    #     quit()
+    #     starting_score = home_team_score.get()
+    # if away_team_name.get() == "Colorado Avalanche" and away_team_score.get() != starting_score:
+    #     quit()
+    #     starting_score = away_team_score.get()
 
     window.mainloop()
-
-scoreboard()

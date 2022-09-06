@@ -4,14 +4,14 @@ import time
 import os
 import cv2
 from tkinter import *
-import GUI_Avs
+# import GUI_Avs
 
 
 starting_score = 0
 
 while True:
 
-    GUI_Avs.scoreboard()
+    # GUI_Avs.scoreboard()
 
     def play_video():
         cap = cv2.VideoCapture('avs_goal_video.mp4')
@@ -93,7 +93,7 @@ while True:
         os.system("killall afplay")
         # player_loop(id_list) # Should print who scored, but will also print past scoring so need to fix that
         starting_score = home_team_score
-    elif away_team_name == "Colorado Avalanche" and away_team_score != starting_score:
+    if away_team_name == "Colorado Avalanche" and away_team_score != starting_score:
         os.system("afplay avs_goal_horn.wav&")
         play_video()
         os.system("killall afplay")
@@ -101,6 +101,8 @@ while True:
         starting_score = away_team_score
 
     time.sleep(20)
+
+
 
 
 # Issues that need fixed
